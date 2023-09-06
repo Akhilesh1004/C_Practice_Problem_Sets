@@ -6,16 +6,16 @@ using namespace std;
 
 int LIS(int arr[], int m){
     int Lis[65536] = {[0 ... 65535] = 1};
-    for(int i = m-2; i >= 0; i--){
-        for(int j = i+1; j < m; j++){
-            if(arr[i] < arr[j]) Lis[i] = max(Lis[i], 1+Lis[j]);
+    for(int i = 0; i < m; i++){
+        for(int j = 0; j < i; j++){
+            if(arr[i] > arr[j]) Lis[i] = max(Lis[i], 1+Lis[j]);
         }
     }
-    int max = 1;
+    int l = 1;
     for(int z = 0; z < m; z++){
-        if(Lis[z] > max) max = Lis[z];
+        l = max(Lis[z], l);
     }
-    return max;
+    return l;
 }
 
 int main(){
