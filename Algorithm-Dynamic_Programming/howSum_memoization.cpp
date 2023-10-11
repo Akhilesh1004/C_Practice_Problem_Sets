@@ -42,6 +42,7 @@ int main(){
 }
 */
 
+
 vector<int> howsum(int n, vector<int>&arrays, map<int, vector<int>>&memo){
     if(n==0) return {};
     if(n<0) return {-1};
@@ -58,6 +59,43 @@ vector<int> howsum(int n, vector<int>&arrays, map<int, vector<int>>&memo){
     memo[n] = {-1};
     return memo[n];
 }
+/*
+vector<vector<int>> howsum(int n, vector<int>&arrays, map<int, vector<vector<int>>>&memo){
+    if(n==0) return {{}};
+    if(n<0) return {};
+    if(memo.find(n)!=memo.end()) return memo[n];
+    for(int x : arrays){
+        int remainder = n-x;
+        vector<vector<int>> remainder_combination= howsum(n-x, arrays, memo);
+        for(vector<int> combination : remainder_combination){
+            combination.push_back(x);
+            memo[n].push_back(combination);
+        }
+    }
+    return memo[n];
+
+
+int main(){
+    int n, m;
+    while(cin>>n>>m){
+        vector<int>a(m);
+        for(int i =0 ;i<m;i++){
+            cin>>a[i];
+        }
+        map<int, vector<vector<int>>>memo;
+        vector<vector<int>> result = howsum(n, a, memo);
+        for(vector<int> combination : result){
+            cout<<"[ ";
+            for(int i = 0; i < combination.size(); i++){
+                cout<<combination[i]<<" ";
+            }
+            cout<<"]"<<endl;
+        }
+    }
+    return 0;
+}
+*/
+
 
 int main(){
     int n, m;

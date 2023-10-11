@@ -4,7 +4,7 @@
 
 using namespace std;
 map<int, long long int> memo;
-
+//O(n) time, O(n) space
 long long int fib(int n){
     if(memo.find(n)!=memo.end()) return memo[n];
     if(n<=2) return 1;
