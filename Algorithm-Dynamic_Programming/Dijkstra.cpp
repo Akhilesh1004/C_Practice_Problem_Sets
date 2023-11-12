@@ -5,12 +5,13 @@
 
 using namespace std;
 
-struct cell{
+struct cell {
     int num;
     int dis;
-    bool operator<(const cell& rhs) const
-    {
-        return dis<rhs.dis;
+};
+struct order{
+    bool operator() (const cell &rhs, const cell &lhs){
+        return (rhs.dis < lhs.dis);
     }
 };
 
@@ -30,7 +31,7 @@ int main(){
         vector<int>check(20, false);
         ans[n] = 0;
         cell start = {n, 0};
-        priority_queue<cell, vector<cell>, greater<cell>> q;
+        priority_queue<cell, vector<cell>, order> q;
         q.push(start);
         while(!q.empty()){
             cell current = q.top();
