@@ -6,49 +6,54 @@
 
 using namespace std;
 
-void solve(vector<string> ss, map<string, pair<int, int>>&memo, vector<vector<string>>&result){
-    for(int i = 0; i<ss.size(); i++){
-        int j = 0;
-        string temp = "";
-        pair<int, int>node;
-        int pos = i, index = 0;
-        while(ss[i][j]){
-            if(ss[i][j] != '\\'){
-                temp += ss[i][j];
-            }else{
-                result[i].push_back(temp);
-                if(memo.find(temp) == memo.end()){
-                    memo[temp] = {pos, index};
-                    result[pos][index] = temp;
-                    index++;
-                }else{
-                    node = memo[temp];
-                    pos = node.first;
-                    index = node.second;
-                }
-                temp = "";
-            }
-            j++;
+int n, sz;
+
+struct Node{
+    string name;
+    map<string, int>vis;
+}node[40005];
+
+
+void insert(string s){
+    int len = s.size();
+    s += '\\';
+    string temp;
+    int u = 0;
+    for(int i = 0; i<=len; i++){
+        temp = "";
+        while(s[i] != '\\'){
+            temp += s[i];
+            i++;
         }
-    }   
+        if(!node[u].vis.count(temp)){
+            node[sz].vis.clear();
+            node[sz].name = temp;
+            node[u].vis[temp] = sz;
+            sz++;
+        }
+        u = node[u].vis[temp];
+    }
+}
+
+void print(int u, int d){
+    if(u){
+        for(int i = 0; i<d; i++) cout<<" ";
+        cout<<node[u].name<<endl;
+    }
+    for(map<string, int>::iterator it = node[u].vis.begin(); it != node[u].vis.end(); it++) print(it->second, d+1);
 }
 
 int main(){
-    int n;
+    string s;
     while(cin>>n){
-        vector<string>ss(n);
+        sz = 1;
+        node[0].vis.clear();
         for(int i = 0; i<n; i++){
-            cin>>ss[i];
+            cin>>s;
+            insert(s);
         }
-        vector<vector<string>>result(100, vector<string>(100));
-        map<string, pair<int, int>>memo;
-        solve(ss, memo, result);
-        for(int i = 0; i<n; i++){
-            for(int j = 0; j<result[i].size(); j++){
-                for(int k = 0; k<j; k++) cout<<" ";
-                cout<<result[i][j]<<endl;
-            }
-        }
+        print(0, -1);
+        cout<<endl;
     }
     return 0;
 }
