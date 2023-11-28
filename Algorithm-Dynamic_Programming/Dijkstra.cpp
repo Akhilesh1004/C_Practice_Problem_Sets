@@ -9,9 +9,9 @@ struct cell {
     int num;
     int dis;
 };
-struct order{
+struct greater_order{
     bool operator() (const cell &rhs, const cell &lhs){
-        return (rhs.dis < lhs.dis);
+        return (rhs.dis > lhs.dis);
     }
 };
 
@@ -31,7 +31,7 @@ int main(){
         vector<int>check(20, false);
         ans[n] = 0;
         cell start = {n, 0};
-        priority_queue<cell, vector<cell>, order> q;
+        priority_queue<cell, vector<cell>, greater_order> q;
         q.push(start);
         while(!q.empty()){
             cell current = q.top();
