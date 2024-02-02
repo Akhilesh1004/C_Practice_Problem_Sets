@@ -28,7 +28,7 @@ vector<int>LIS_(vector<int>dp){
             if(dp[j]>dp[i]){
                 if(lis[i]+1 > lis[j]){
                     lis[j] = lis[i]+1;
-                    pre[j]=i;
+                    prev[j]=i;
                 }
             }
         }
