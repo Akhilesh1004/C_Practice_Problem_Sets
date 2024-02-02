@@ -25,9 +25,11 @@ vector<int>LIS_(vector<int>dp){
     int index = 0;
     for(int i = 0; i<dp.size(); i++){
         for(int j= i+1; j<dp.size(); j++){
-            if(dp[i]<dp[j]){
-                lis[j] = max(lis[j], lis[i]+1);
-                prev[j] = i;
+            if(dp[j]>dp[i]){
+                if(lis[i]+1 > lis[j]){
+                    lis[j] = lis[i]+1;
+                    pre[j]=i;
+                }
             }
         }
         if(lis[i]>len){
