@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <stdint.h>
 
 using namespace std;
@@ -20,6 +20,18 @@ int main(){
         ans1 = 99-n+s+1;
         if(ans>=ans1) cout<<ans1<<endl;
         else cout<<ans<<endl;
+    }
+    return 0;
+}*/
+
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    int a, b;
+    while(cin>>a>>b && a!=-1){
+        cout<<min((a-b+100)%100, (b-a+100)%100)<<"\n";
     }
     return 0;
 }

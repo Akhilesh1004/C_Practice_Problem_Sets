@@ -1,23 +1,33 @@
 #include <iostream>
-#include <stdio.h>
 
 using namespace std;
 
 int main(){
-    int a[3];
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    long long a[3], n, index = 1;
     bool check;
-    while(cin>>a[0]>>a[1]>>a[2]){
-        check = true;
-        if(a[0]>=a[1]+a[2]) check = false;
-        if(a[1]>=a[0]+a[2]) check = false;
-        if(a[2]>=a[0]+a[1]) check = false;
-        if(check){
-            if(a[0]==a[1]&& a[1]==a[2]&&a[0]==a[2]) cout<<"Equilateral"<<endl;
-            else if(a[0]==a[1]|| a[1]==a[2]|| a[0]==a[2]) cout<<"Isosceles"<<endl;
-            else cout<<"Scalene"<<endl;
+    cin>>n;
+    while(n--){
+        cin>>a[0]>>a[1]>>a[2];
+        cout<<"Case "<<index<<": ";
+        if(a[0] > 0 && a[0]==a[1] && a[1]==a[2]){
+            cout<<"Equilateral\n";
+        }else if(a[0] > 0 && a[1] > 0 && a[2] > 0){
+            check = true;
+            if(a[0]>=a[1]+a[2]) check = false;
+            else if(a[1]>=a[0]+a[2]) check = false;
+            else if(a[2]>=a[0]+a[1]) check = false;
+            if(check){
+                if(a[0]==a[1]|| a[1]==a[2]|| a[0]==a[2]) cout<<"Isosceles\n";
+                else cout<<"Scalene\n";
+            }else{
+                cout<<"Invalid\n";
+            }
         }else{
-            cout<<"Invalid"<<endl;
+            cout<<"Invalid\n";
         }
+        index++;
     }
     return 0;
 }

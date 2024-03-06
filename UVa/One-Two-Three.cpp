@@ -1,5 +1,4 @@
 #include <iostream>
-#include <stdio.h>
 #include <string>
 #include <vector>
 
@@ -19,12 +18,14 @@ int compare(string s){
 }
 
 int main(){
+    ios::sync_with_stdio(0);
+    cin.tie(0);
     int n;
     string s;
     while(cin>>n){
         for(int i = 0; i<n; i++){
             cin>>s;
-            cout<<compare(s)<<endl;
+            cout<<compare(s)<<"\n";
         }
     }
     return 0;
